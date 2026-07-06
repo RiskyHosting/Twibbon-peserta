@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Twibbon MPLS 2026 | SMK ULIL ALBAB DEPOK</title>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           1. PREMIUM BRANDING VARIABLES (NAVY, WHITE & GOLD)
+        ========================================================= */
+        :root {
+            /* Light Mode */
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-card-bg: rgba(255, 255, 255, 0.55);
+            
+            --navy-primary: #0f223d; 
+            --navy-secondary: #1a355e;
+            --gold-accent: #cfab55;   
+            --gold-hover: #b59243;
+            
+            --text-primary: #0f223d;
+            --text-secondary: #334155;
+            --control-bg: rgba(255, 255, 255, 0.45);
+            --control-border: rgba(15, 34, 61, 0.1);
+            
+            --btn-accent: #0f223d;
+            --btn-accent-text: #ffffff;
+            --primary: #10b981;
+            --overlay-intensity: rgba(241, 245, 249, 0.15);
+            --shadow-soft: 0 15px 35px -5px rgba(15, 23, 42, 0.08);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Shadow khusus logo PNG transparan */
+            --logo-shadow: drop-shadow(0 3px 6px rgba(15, 34, 61, 0.18));
+        }
+
+        [data-theme="dark"] {
+            /* Dark Mode */
+            --glass-bg: rgba(15, 23, 42, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-card-bg: rgba(15, 23, 42, 0.6);
+            
+            --navy-primary: #f8fafc;
+            --navy-secondary: #cbd5e1;
+            --gold-accent: #cfab55;
+            --gold-hover: #b59243;
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --control-bg: rgba(15, 23, 42, 0.5);
+            --control-border: rgba(255, 255, 255, 0.05);
+            
+            --btn-accent: #f8fafc;
+            --btn-accent-text: #0f223d;
+            --primary: #10b981;
+            --overlay-intensity: rgba(15, 23, 42, 0.3);
+            --shadow-soft: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+            
+            /* Shadow logo mode gelap */
+            --logo-shadow: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        /* Base Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        /* =========================================================
+           2. LIVE DRIFTING BACKGROUND SYSTEM (CINEMATIC)
+        ========================================================= */
+        .bg-viewport {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            will-change: transform;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: liveDrift 24s ease-in-out infinite alternate;
+        }
+
+        #bg-light {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        #bg-dark {
+            opacity: 0;
+            z-index: 2;
+        }
+
+        [data-theme="dark"] #bg-light { opacity: 0; }
+        [data-theme="dark"] #bg-dark { opacity: 1; }
+
+        @keyframes liveDrift {
+            0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate3d(-2%, -2%, 0) scale(1.03) rotate(0.5deg); }
+        }
+
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--overlay-intensity);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 3;
+            transition: var(--transition-smooth);
+        }
+
+        /* =========================================================
+           3. OPTIMIZED OVERLAYS (SUN PULSE & LIGHT STARS)
+        ========================================================= */
+        .sun-rays {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 85% 15%, rgba(255, 235, 180, 0.25) 0%, rgba(255, 255, 255, 0) 65%);
+            pointer-events: none;
+            z-index: 4;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            animation: pulseLight 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseLight {
+            0% { opacity: 0.6; }
+            100% { opacity: 1.0; }
+        }
+
+        [data-theme="dark"] .sun-rays {
+            opacity: 0;
+        }
+
+        .stars-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 4;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        [data-theme="dark"] .stars-overlay {
+            opacity: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px #ffffff;
+            animation: twinkle var(--dur) ease-in-out infinite var(--del);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* =========================================================
+           4. STANDARD FLOWING NAVBAR
+        ========================================================= */
+        .navbar {
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            position: relative;
+            z-index: 100;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .emblem-logo {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: transparent;
+            border-radius: 0;
+            border: none;
+            padding: 0;
+            filter: var(--logo-shadow);
+            transition: var(--transition-smooth);
+        }
+
+        .brand-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle-btn {
+            background: var(--control-bg);
+            border: 1px solid var(--control-border);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        /* =========================================================
+           5. MAIN APP CARD (WIDE & POLISHED)
+        ========================================================= */
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--glass-card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 28px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--glass-border);
+            padding: 1.75rem;
+            transition: var(--transition-smooth);
+        }
+
+        .campaign-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .title-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold-accent);
+            background: rgba(207, 171, 85, 0.12);
+            padding: 6px 14px;
+            border-radius: 99px;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(207, 171, 85, 0.2);
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .official-sub {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* =========================================================
+           6. RESPONSIVE SOCIAL MEDIA PILLS
+        ========================================================= */
+        .social-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 0.5rem 0;
+        }
+
+        .social-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            width: 100%;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--control-bg);
+            border: 1px solid var(--control-border);
+            color: var(--text-primary);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            background: var(--btn-accent);
+            color: var(--btn-accent-text);
+            border-color: var(--btn-accent);
+        }
+
+        .social-link i {
+            font-size: 0.85rem;
+        }
+
+        /* =========================================================
+           7. ENLARGED VIEWPORT (FOCUS UTAMA HALAMAN)
+        ========================================================= */
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .viewport-wrapper {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-color: var(--control-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(207, 171, 85, 0.25);
+            box-shadow: 0 12px 40px rgba(15, 34, 61, 0.08);
+        }
+
+        .placeholder-view {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .placeholder-frame {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .interactive-workspace {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: none;
+        }
+
+        .user-photo-layer {
+            position: absolute;
+            cursor: move;
+            transform-origin: center center;
+            will-change: transform;
+        }
+
+        .twibbon-frame-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .instruction-bar {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+            display: none;
+            line-height: 1.4;
+        }
+
+        /* Slider Controls */
+        .control-panel {
+            width: 100%;
+            margin-top: 1.25rem;
+            display: none;
+        }
+
+        .control-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--control-bg);
+            padding: 12px 14px;
+            border-radius: 18px;
+            border: 1px solid var(--control-border);
+        }
+
+        .control-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .control-item span {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            width: 50px;
+            letter-spacing: 0.05em;
+        }
+
+        .control-item i {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .slider {
+            flex: 1;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--control-border);
+            border-radius: 99px;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--btn-accent);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        /* =========================================================
+           8. ACTION BUTTONS (LEBIH MENONJOL)
+        ========================================================= */
+        .action-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px; 
+            border: none;
+            border-radius: 99px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.02em;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background: var(--btn-accent);
+            color: var(--btn-accent-text);
+            box-shadow: 0 6px 20px rgba(15, 34, 61, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(15, 34, 61, 0.25);
+        }
+
+        .btn-secondary {
+            background: var(--control-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--control-border);
+        }
+
+        .btn-success {
+            background: var(--gold-accent);
+            color: #0f223d;
+            box-shadow: 0 6px 20px rgba(207, 171, 85, 0.25);
+        }
+
+        .btn-success:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(207, 171, 85, 0.35);
+        }
+
+        /* =========================================================
+           9. THREE-STEP INSTRUCTIONS WITH NUMBERS
+        ========================================================= */
+        .description-box {
+            margin-top: 1.75rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--control-bg);
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 1px solid var(--control-border);
+        }
+
+        .step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(15, 34, 61, 0.08);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            border: 1px solid var(--control-border);
+        }
+
+        [data-theme="dark"] .step-icon {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .step-text {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .step-text strong {
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            padding: 12px 16px;
+            background: rgba(239, 68, 68, 0.06);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 14px;
+            color: #ef4444;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        [data-theme="dark"] .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #fca5a5;
+        }
+
+        /* =========================================================
+           10. POP-UP MODAL HASIL RENDERING (PREMIUM FALLBACK)
+           Solusi cerdas untuk HP iOS Safari & In-App Browsers
+        ========================================================= */
+        .result-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .result-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--glass-card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .result-modal.show .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .modal-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+            background: var(--control-bg);
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid var(--control-border);
+        }
+
+        .result-preview-container {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid var(--gold-accent);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(15, 34, 61, 0.12);
+        }
+
+        .result-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: auto; /* Memungkinkan user menahan jari untuk menyimpan */
+            -webkit-user-select: auto;
+        }
+
+        /* =========================================================
+           11. OFFICIAL FOOTER
+        ========================================================= */
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid var(--glass-border);
+            padding: 1.75rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: var(--transition-smooth);
+            z-index: 10;
+        }
+
+        footer strong {
+            color: var(--text-primary);
+        }
+
+        .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+
+        .hosting-info {
+            margin-top: 4px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- LIVE BACKGROUND CONTAINER -->
+    <div class="bg-viewport">
+        <div id="bg-light" class="bg-layer"></div>
+        <div id="bg-dark" class="bg-layer"></div>
+        <div class="bg-overlay"></div>
+        
+        <!-- Dynamic Overlay Elements -->
+        <div class="sun-rays" id="sunRays"></div>
+        <div class="stars-overlay" id="starsOverlay"></div>
+    </div>
+
+    <!-- FLOATING NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand-box">
+                <!-- Elemen gambar logo OSIS yang mendeteksi lokal logo.png secara dinamis (tanpa lingkaran) -->
+                <img class="school-logo-img emblem-logo" src="" alt="OSIS Logo">
+                <span class="brand-text">SMK ULIL ALBAB DEPOK</span>
+            </div>
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Ganti Tema">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="container">
+        <main class="card">
+            <div class="campaign-header">
+                <div class="title-badge">Dibuat oleh OSIS SMK UA</div>
+                <h1 class="title">Twibbon MPLS 2026</h1>
+                <p class="official-sub">SMK ULIL ALBAB</p>
+                
+                <!-- SOSIAL MEDIA PILLS (BEBAS BUG OVERLAP) -->
+                <div class="social-tags">
+                    <div class="social-label">Hubungi OSIS SMK UA</div>
+                    <a href="https://instagram.com/osis_smkulilalbab" target="_blank" class="social-link">
+                        <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram
+                    </a>
+                    <a href="https://tiktok.com/@osis_smkulilalbab" target="_blank" class="social-link">
+                        <i class="fa-brands fa-tiktok"></i> TikTok
+                    </a>
+                </div>
+            </div>
+
+            <!-- EDITOR VIEWPORT 4:5 -->
+            <div class="editor-container">
+                <div class="viewport-wrapper" id="viewport">
+                    <div class="placeholder-view" id="placeholderView">
+                        <img id="placeholderFrameImg" class="placeholder-frame" src="" alt="Twibbon Template">
+                    </div>
+
+                    <div class="interactive-workspace" id="workspace">
+                        <img id="userPhoto" class="user-photo-layer" src="" alt="Foto Pengguna">
+                        <img id="overlayFrameImg" class="twibbon-frame-layer" src="" alt="Twibbon Over Layer">
+                    </div>
+                </div>
+
+                <p class="instruction-bar" id="instructionText">
+                    <i class="fa-solid fa-hand-pointer"></i> Cubit layar dengan <strong>dua jari</strong> untuk mengatur ukuran & kemiringan foto Anda secara leluasa.
+                </p>
+
+                <!-- Panel Sliders Pendukung Desktop / Laptop -->
+                <div class="control-panel" id="controlPanel">
+                    <div class="control-row">
+                        <div class="control-item">
+                            <span>ZOOM</span>
+                            <i class="fa-solid fa-magnifying-glass-minus"></i>
+                            <input type="range" class="slider" id="zoomSlider" min="0.1" max="4" step="0.01" value="1">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </div>
+                        <div class="control-item">
+                            <span>PUTAR</span>
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <input type="range" class="slider" id="rotateSlider" min="-180" max="180" step="1" value="0">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="action-group">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                
+                <button class="btn btn-primary" id="btnChoose">
+                    <i class="fa-solid fa-image"></i> Pilih Fotomu
+                </button>
+                
+                <button class="btn btn-secondary hidden" id="btnChange">
+                    <i class="fa-solid fa-arrows-rotate"></i> Ganti Foto
+                </button>
+                
+                <button class="btn btn-success hidden" id="btnDownload">
+                    <i class="fa-solid fa-circle-down"></i> Unduh Twibbon (4:5)
+                </button>
+            </div>
+
+            <!-- TIGA LANGKAH PENGGUNAAN SINGKAT -->
+            <div class="description-box">
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-icon">1</div>
+                        <div class="step-text">
+                            <strong>Pilih Fotomu</strong>
+                            Klik tombol "Pilih Fotomu" untuk mengunggah berkas foto terbaik Anda dari perangkat.
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon">2</div>
+                        <div class="step-text">
+                            <strong>Atur Posisi</strong>
+                            Sesuai foto Anda tepat di dalam bingkai transparan dengan menyeretnya. Cubit dengan dua jari untuk zoom & rotasi.
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-icon">3</div>
+                        <div class="step-text">
+                            <strong>Unduh Hasil</strong>
+                            Klik tombol "Unduh Twibbon" untuk mengunduh hasil bingkai beresolusi tinggi.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span><strong>Peringatan!</strong> Jangan pakai foto yang aneh aneh</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- POP-UP MODAL HASIL RENDERING (PREMIUM FALLBACK) -->
+    <div id="resultModal" class="result-modal">
+        <div class="modal-content">
+            <button class="close-modal-btn" id="closeModalBtn" aria-label="Tutup Popup">&times;</button>
+            <h3 class="modal-title">Twibbon Siap!</h3>
+            <p class="modal-desc">Jika unduhan otomatis diblokir di HP Anda (terutama WA / Instagram), silakan <strong>tekan lama pada gambar di bawah</strong> lalu pilih <strong>"Simpan Gambar"</strong>.</p>
+            <div class="result-preview-container">
+                <img id="resultImage" class="result-image" src="" alt="Hasil Rendering Final">
+            </div>
+            <button class="btn btn-secondary" id="modalBackBtn">Kembali Edit</button>
+        </div>
+    </div>
+
+    <!-- CANVAS RENDERING (1080x1350) -->
+    <canvas id="renderCanvas" style="display: none;"></canvas>
+
+    <!-- FOOTER RESMI -->
+    <footer>
+        <div class="footer-logo">OSIS SMK ULIL ALBAB</div>
+        <p>Masa Pengenalan Lingkungan Sekolah • Tahun Ajaran 2026/2027</p>
+        <p class="hosting-info"><i class="fa-solid fa-server"></i> Website by <strong>ig: @riskyy.di</strong></p>
+    </footer>
+
+    <!-- JAVASCRIPT SISTEM -->
+    <script>
+        /* =========================================================
+           1. SISTEM RESOLVE BERKAS LOKAL (FALLBACK UTAMA)
+        ========================================================= */
+        let activeTwibbonSrc = '';
+
+        function setBackgroundSource(theme, url) {
+            const el = document.getElementById(`bg-${theme}`);
+            if (el) {
+                el.style.backgroundImage = `url('${url}')`;
+            }
+        }
+
+        // Memetakan sumber gambar logo khusus agar tidak memengaruhi tutorial
+        function setLogoSource(url) {
+            document.querySelectorAll('.brand-box .school-logo-img').forEach(img => {
+                img.src = url;
+            });
+        }
+
+        function setTwibbonSource(url) {
+            activeTwibbonSrc = url;
+            document.getElementById('placeholderFrameImg').src = url;
+            document.getElementById('overlayFrameImg').src = url;
+        }
+
+        (function resolveAllAssets() {
+            // Bingkai twb.png
+            const testTwb = new Image();
+            testTwb.onload = () => setTwibbonSource('twb.png');
+            testTwb.onerror = () => setTwibbonSource('https://files.catbox.moe/1d9mow.png');
+            testTwb.src = 'twb.png';
+
+            // Logo OSIS logo.png
+            const testLogo = new Image();
+            testLogo.onload = () => setLogoSource('logo.png');
+            testLogo.onerror = () => setLogoSource('https://files.catbox.moe/soct9o.png');
+            testLogo.src = 'logo.png';
+
+            // Background terang.jpg
+            const testLight = new Image();
+            testLight.onload = () => setBackgroundSource('light', 'terang.jpg');
+            testLight.onerror = () => setBackgroundSource('light', 'https://files.catbox.moe/6p9wt6.jpeg');
+            testLight.src = 'terang.jpg';
+
+            // Background dark.jpg
+            const testDark = new Image();
+            testDark.onload = () => setBackgroundSource('dark', 'dark.jpg');
+            testDark.onerror = () => setBackgroundSource('dark', 'https://files.catbox.moe/54w0ao.png');
+            testDark.src = 'dark.jpg';
+        })();
+
+        /* =========================================================
+           2. ANIMASI OVERLAY BINTANG RINGAN (DARK MODE)
+        ========================================================= */
+        const starsOverlay = document.getElementById('starsOverlay');
+
+        function generateStars(count = 18) { // Dibatasi hanya 18 bintang agar hemat daya HP Kentang
+            starsOverlay.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const size = Math.random() * 2 + 1;
+                const dur = Math.random() * 3 + 1.5;
+                const del = Math.random() * 3;
+
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--dur', `${dur}s`);
+                star.style.setProperty('--del', `${del}s`);
+                fragment.appendChild(star);
+            }
+            starsOverlay.appendChild(fragment);
+        }
+
+        /* =========================================================
+           3. LOGIKA DETEKSI TEMA BAWAAN HP & SWITCH TEMA
+        ========================================================= */
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        // Deteksi preferensi sistem pengguna secara otomatis
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = systemPrefersDark ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', initialTheme);
+
+        // Inisialisasi ikon dan bintang sesuai tema sistem pertama kali dibuka
+        if (initialTheme === 'dark') {
+            themeIcon.className = 'fa-solid fa-sun';
+            generateStars();
+        } else {
+            themeIcon.className = 'fa-solid fa-moon';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', targetTheme);
+
+            if (targetTheme === 'dark') {
+                themeIcon.className = 'fa-solid fa-sun';
+                generateStars();
+            } else {
+                themeIcon.className = 'fa-solid fa-moon';
+                starsOverlay.innerHTML = '';
+            }
+        });
+
+        /* =========================================================
+           4. MANIPULASI GESTURE & POSISI GAMBAR (60FPS OPTIMIZED)
+        ========================================================= */
+        const fileInput = document.getElementById('fileInput');
+        const btnChoose = document.getElementById('btnChoose');
+        const btnChange = document.getElementById('btnChange');
+        const btnDownload = document.getElementById('btnDownload');
+        const viewport = document.getElementById('viewport');
+        const placeholderView = document.getElementById('placeholderView');
+        const workspace = document.getElementById('workspace');
+        const userPhoto = document.getElementById('userPhoto');
+        const instructionText = document.getElementById('instructionText');
+        const controlPanel = document.getElementById('controlPanel');
+        const zoomSlider = document.getElementById('zoomSlider');
+        const rotateSlider = document.getElementById('rotateSlider');
+        const renderCanvas = document.getElementById('renderCanvas');
+
+        let scale = 1;
+        let angle = 0;
+        let posX = 0;
+        let posY = 0;
+
+        let activeTouches = 0;
+        let touchStartDistance = 0;
+        let touchStartAngle = 0;
+        let initialScale = 1;
+        let initialAngle = 0;
+        let initialPosX = 0;
+        let initialPosY = 0;
+        let touchStartCenter = { x: 0, y: 0 };
+
+        let isDragging = false;
+        let mouseStartX = 0;
+        let mouseStartY = 0;
+
+        let imgOriginalWidth = 0;
+        let imgOriginalHeight = 0;
+
+        btnChoose.addEventListener('click', () => fileInput.click());
+        btnChange.addEventListener('click', () => fileInput.click());
+        placeholderView.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    userPhoto.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        userPhoto.onload = function() {
+            placeholderView.style.display = 'none';
+            workspace.style.display = 'block';
+            instructionText.style.display = 'block';
+            controlPanel.style.display = 'block';
+            btnChoose.classList.add('hidden');
+            btnChange.classList.remove('hidden');
+            btnDownload.classList.remove('hidden');
+
+            const viewWidth = viewport.clientWidth;
+            const viewHeight = viewport.clientHeight;
+            const imgRatio = userPhoto.naturalWidth / userPhoto.naturalHeight;
+
+            if (imgRatio > 0.8) {
+                imgOriginalHeight = viewHeight;
+                imgOriginalWidth = viewHeight * imgRatio;
+            } else {
+                imgOriginalWidth = viewWidth;
+                imgOriginalHeight = viewWidth / imgRatio;
+            }
+
+            userPhoto.style.width = `${imgOriginalWidth}px`;
+            userPhoto.style.height = `${imgOriginalHeight}px`;
+
+            scale = 1;
+            angle = 0;
+            posX = 0;
+            posY = 0;
+            
+            zoomSlider.value = 1;
+            rotateSlider.value = 0;
+
+            applyTransforms();
+        };
+
+        // Menggunakan translate3d untuk akselerasi hardware penuh pada browser seluler
+        function applyTransforms() {
+            userPhoto.style.transform = `translate(-50%, -50%) translate3d(${posX}px, ${posY}px, 0) scale(${scale}) rotate(${angle}deg)`;
+            userPhoto.style.left = '50%';
+            userPhoto.style.top = '50%';
+        }
+
+        zoomSlider.addEventListener('input', (e) => {
+            scale = parseFloat(e.target.value);
+            applyTransforms();
+        });
+
+        rotateSlider.addEventListener('input', (e) => {
+            angle = parseFloat(e.target.value);
+            applyTransforms();
+        });
+
+        function getDistance(t1, t2) {
+            return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+        }
+
+        function getAngle(t1, t2) {
+            return Math.atan2(t2.clientY - t1.clientY, t2.clientX - t1.clientX);
+        }
+
+        function getCenter(t1, t2) {
+            return {
+                x: (t1.clientX + t2.clientX) / 2,
+                y: (t1.clientY + t2.clientY) / 2
+            };
+        }
+
+        viewport.addEventListener('touchstart', (e) => {
+            if (fileInput.files.length === 0) return;
+            activeTouches = e.touches.length;
+
+            if (activeTouches === 1) {
+                isDragging = true;
+                const touch = e.touches[0];
+                mouseStartX = touch.clientX - posX;
+                mouseStartY = touch.clientY - posY;
+            } else if (activeTouches >= 2) {
+                isDragging = false;
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+
+                touchStartDistance = getDistance(t1, t2);
+                touchStartAngle = getAngle(t1, t2);
+                touchStartCenter = getCenter(t1, t2);
+
+                initialScale = scale;
+                initialAngle = angle;
+                initialPosX = posX;
+                initialPosY = posY;
+            }
+            e.preventDefault();
+        }, { passive: false });
+
+        viewport.addEventListener('touchmove', (e) => {
+            if (fileInput.files.length === 0) return;
+
+            if (e.touches.length === 1 && isDragging) {
+                const touch = e.touches[0];
+                posX = touch.clientX - mouseStartX;
+                posY = touch.clientY - mouseStartY;
+                applyTransforms();
+            } else if (e.touches.length >= 2) {
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+
+                const currentDistance = getDistance(t1, t2);
+                const currentAngle = getAngle(t1, t2);
+                const currentCenter = getCenter(t1, t2);
+
+                const distanceRatio = currentDistance / touchStartDistance;
+                scale = Math.min(Math.max(initialScale * distanceRatio, 0.1), 4);
+                zoomSlider.value = scale;
+
+                const angleDiff = currentAngle - touchStartAngle;
+                const angleDegreeDiff = angleDiff * (180 / Math.PI);
+                angle = (initialAngle + angleDegreeDiff) % 360;
+                rotateSlider.value = Math.round(angle);
+
+                posX = initialPosX + (currentCenter.x - touchStartCenter.x);
+                posY = initialPosY + (currentCenter.y - touchStartCenter.y);
+
+                applyTransforms();
+            }
+            e.preventDefault();
+        }, { passive: false });
+
+        viewport.addEventListener('touchend', (e) => {
+            activeTouches = e.touches.length;
+            if (activeTouches === 1) {
+                isDragging = true;
+                const touch = e.touches[0];
+                mouseStartX = touch.clientX - posX;
+                mouseStartY = touch.clientY - posY;
+            } else {
+                isDragging = false;
+            }
+        });
+
+        viewport.addEventListener('mousedown', (e) => {
+            if (fileInput.files.length === 0) return;
+            isDragging = true;
+            mouseStartX = e.clientX - posX;
+            mouseStartY = e.clientY - posY;
+            userPhoto.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            posX = e.clientX - mouseStartX;
+            posY = e.clientY - mouseStartY;
+            applyTransforms();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            userPhoto.style.cursor = 'move';
+        });
+
+        /* =========================================================
+           5. RENDER HD KANVAS & FORMAT PENAMAAN FORMAL
+        ========================================================= */
+        const resultModal = document.getElementById('resultModal');
+        const resultImage = document.getElementById('resultImage');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalBackBtn = document.getElementById('modalBackBtn');
+
+        // Fungsi Menutup Pop-up Modal
+        function hideModal() {
+            resultModal.classList.remove('show');
+        }
+
+        closeModalBtn.addEventListener('click', hideModal);
+        modalBackBtn.addEventListener('click', hideModal);
+
+        btnDownload.addEventListener('click', () => {
+            btnDownload.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Merender...';
+            btnDownload.disabled = true;
+
+            const frameImg = new Image();
+            frameImg.crossOrigin = 'anonymous';
+            frameImg.src = activeTwibbonSrc;
+
+            frameImg.onload = function() {
+                const canvasW = 1080;
+                const canvasH = 1350;
+
+                renderCanvas.width = canvasW;
+                renderCanvas.height = canvasH;
+
+                const ctx = renderCanvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvasW, canvasH);
+
+                const viewWidth = viewport.clientWidth;
+                const scaleFactor = canvasW / viewWidth;
+
+                const finalImgW = imgOriginalWidth * scaleFactor;
+                const finalImgH = imgOriginalHeight * scaleFactor;
+                const finalX = (canvasW / 2) + (posX * scaleFactor);
+                const finalY = (canvasH / 2) + (posY * scaleFactor);
+
+                ctx.save();
+                ctx.translate(finalX, finalY);
+                ctx.rotate(angle * Math.PI / 180);
+                ctx.scale(scale, scale);
+                ctx.drawImage(userPhoto, -finalImgW / 2, -finalImgH / 2, finalImgW, finalImgH);
+                ctx.restore();
+
+                ctx.drawImage(frameImg, 0, 0, canvasW, canvasH);
+
+                const outputUrl = renderCanvas.toDataURL('image/png');
+                
+                // Set gambar hasil render ke dalam modal
+                resultImage.src = outputUrl;
+                resultModal.classList.add('show');
+
+                const downloadLink = document.createElement('a');
+                
+                // PENAMAAN FORMAL
+                downloadLink.download = 'twibon-ulilalbab.png';
+                downloadLink.href = outputUrl;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+
+                btnDownload.innerHTML = '<i class="fa-solid fa-circle-down"></i> Unduh Twibbon (4:5)';
+                btnDownload.disabled = false;
+            };
+
+            frameImg.onerror = function() {
+                alert('Terkendala saat memuat bingkai twibbon. Silakan coba sesaat lagi.');
+                btnDownload.innerHTML = '<i class="fa-solid fa-circle-down"></i> Unduh Twibbon (4:5)';
+                btnDownload.disabled = false;
+            };
+        });
+    </script>
+</body>
+</html>
